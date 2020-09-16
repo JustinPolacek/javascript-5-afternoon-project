@@ -24,11 +24,17 @@ function outer() {
   
 // Code Here
 
+let inner = outer()
+
 
 
 //Once you do that, invoke inner.
 
 //Code Here
+
+
+
+
 
 
 
@@ -52,6 +58,14 @@ function callFriend(name) {
 */
 
 //Code Here
+let callJake = callFriend('Jake')
+  callJake(('999-999-999'))
+
+
+
+
+
+
 
 
 
@@ -62,6 +76,17 @@ function callFriend(name) {
 */
 
 //Code Here
+
+
+function makeCounter(){
+  let count = 0;
+
+  return function(){
+    count += 1;
+    return count;
+  }
+
+}
 
 
 
@@ -87,9 +112,17 @@ function callFriend(name) {
 
 function counterFactory(value) {
   // Code here.
-
+ let count = value
   return {
+  inc: function(){
+    count += 1;
+    return count;
 
+  },
+  dec: function(){
+    count -= 1;
+    return count;
+  }
   };
 }
 
@@ -114,8 +147,21 @@ function motivation( firstname, lastname ) {
 
   // code message function here.
 
+  function message(){
+    return `${welcomeText} ${firstname} ${lastname}.`
+  }
+
+
+
+
+
+
+
+
+
+
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
@@ -144,10 +190,14 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+
+   publicMethod: function(){
+     return privateMethod();
+   }
   };
 })();
 
-
+module.publicMethod();
 
 ////////// PROBLEM 7 //////////
 
@@ -162,7 +212,17 @@ function secretNumber() {
   var secret = 143;
 
   return {
-    // Code here
+    // code here
+    addToSecret: function(num){
+      secret += num;
+      return secret;
+
+    },
+    takeAwayFromSecret: function(num){
+      secret -= num;
+      return secret;
+
+    }
   };
 }
 
@@ -188,9 +248,14 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
+    function spitOutVal(){
+
+    }
+
+    setTimeout(function(num) {
+      console.log(num);
+    }, num * 1000);
   }
+  spitOutVal(i);
 }
 timeOutCounter();
